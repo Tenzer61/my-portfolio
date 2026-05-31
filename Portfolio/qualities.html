@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Qualities & Protocols | Lee Yong Kang</title>
+    <style>
+        /* ROG Theme Core Engine Integration */
+        :root {
+            --rog-red: #ff0029;
+            --dark-bg: #0b0b0b;
+            --card-bg: #151515;
+            --text-main: #ffffff;
+            --text-dim: #b0b0b0;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif, 'Segoe UI';
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        /* Persistent Navigation Module */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(11, 11, 11, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--rog-red);
+            text-shadow: 0 0 10px var(--rog-red);
+        }
+
+        /* Layout Configuration */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px var(--rog-red);
+            display: block;
+            width: fit-content;
+            margin: 0 auto 60px auto;
+            border-bottom: 3px solid var(--rog-red);
+            padding-bottom: 10px;
+        }
+
+        .section-header {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--rog-red);
+            padding-left: 15px;
+        }
+
+        /* Quality Metrics Grid Matrix */
+        .qualities-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        @media (min-width: 768px) {
+            .qualities-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .quality-card {
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            padding: 30px;
+            transition: var(--transition);
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+            text-align: center;
+        }
+
+        .quality-card:hover {
+            border-color: var(--rog-red);
+            box-shadow: 0 0 25px rgba(255, 0, 41, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .quality-icon {
+            font-size: 2.5rem;
+            color: var(--rog-red);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 0, 41, 0.4);
+        }
+
+        .quality-card h3 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .quality-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        /* Social Proof / Testimonials Module Layout */
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .testimonial-block {
+            background-color: var(--card-bg);
+            border: 1px solid #222;
+            padding: 40px;
+            position: relative;
+            clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+            border-right: 3px solid var(--rog-red);
+        }
+
+        .quote-text {
+            color: var(--text-dim);
+            font-style: italic;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            position: relative;
+        }
+
+        .quote-text::before {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(255, 0, 41, 0.15);
+            position: absolute;
+            top: -40px;
+            left: -10px;
+            font-family: serif;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+        }
+
+        .author-meta h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        .author-meta span {
+            font-size: 0.8rem;
+            color: var(--rog-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        strong {
+            color: var(--rog-red);
+        }
+
+        /* Action Controls Layout */
+        .back-btn-container {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .rog-btn {
+            background: var(--rog-red);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .rog-btn:hover {
+            background: white;
+            color: var(--rog-red);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Global Framework Header -->
+    <nav>
+        <div style="font-weight: 900; color: var(--rog-red);">KANG</div>
+        <ul class="nav-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#qualities">Qualities</a></li>
+            <li><a href="index.html#academic">Education</a></li>
+            <li><a href="index.html#work">Projects</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1 class="page-title">Personal Profiles</h1>
+
+        <!-- Section 1: Core Soft Attributes Matrix -->
+        <section style="margin-bottom: 60px;">
+            <h2 class="section-header">Core Operational Qualities</h2>
+            <div class="qualities-grid">
+
+                <div class="quality-card">
+                    <div class="quality-icon">&#129504;</div>
+                    <h3>Strategic Adaptation</h3>
+                    <p>Highly capable of breaking down unfamiliar development environments rapidly. Successfully handles
+                        system pivots, balancing meticulous attention to structural efficiency with high execution
+                        speed.</p>
+                </div>
+
+                <div class="quality-card">
+                    <div class="quality-icon">&#129309;</div>
+                    <h3>Synergistic Collaboration</h3>
+                    <p>Thrives in highly technical team environments, explicitly optimizing communication and
+                        engineering roles—such as managing data architecture and coordinating full backend
+                        synchronization.</p>
+                </div>
+
+                <div class="quality-card">
+                    <div class="quality-icon">&#127919;</div>
+                    <h3>Quantitative Mindset</h3>
+                    <p>Applies systematic, evidence-driven reasoning across all challenges, transforming complex
+                        algorithmic dependencies and ambiguous processing errors into practical, high-fidelity
+                        solutions.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 2: Social Verification Framework -->
+        <section>
+            <h2 class="section-header">Verification & Recommendations</h2>
+            <div class="testimonials-container">
+
+                <div class="testimonial-block">
+                    <p class="quote-text">
+                        Working with Yong Kang on our integrated software architectures was seamless. His execution as
+                        our database engineer ensured absolute stability, proactively protecting our validation loops
+                        and application entry points from engineering oversights.
+                    </p>
+                    <div class="author-info">
+                        <div class="author-meta">
+                            <h4>Project Development Team</h4>
+                            <span>Peer Evaluation &bull; eNote System Project</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-block">
+                    <p class="quote-text">
+                        Yong Kang demonstrates an outstanding capacity to merge structured quantitative research methods
+                        with functional implementation blocks. His focus and systematic logic across backend systems
+                        make him an invaluable asset for technical solution engineering.
+                    </p>
+                    <div class="author-info">
+                        <div class="author-meta">
+                            <h4>Academic Validation Team</h4>
+                            <span>Project Supervisory Reference</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Navigation Return System Call -->
+        <div class="back-btn-container">
+            <a href="index.html" class="rog-btn">Return to Main Terminal</a>
+        </div>
+    </main>
+
+</body>
+
+</html>

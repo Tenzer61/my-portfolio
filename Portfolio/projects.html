@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Mission Log | eNote App | Lee Yong Kang</title>
+    <style>
+        :root {
+            --rog-red: #ff0029;
+            --dark-bg: #0b0b0b;
+            --card-bg: #151515;
+            --text-main: #ffffff;
+            --text-dim: #b0b0b0;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif, 'Segoe UI';
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(11, 11, 11, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--rog-red);
+            text-shadow: 0 0 10px var(--rog-red);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px var(--rog-red);
+            display: inline-block;
+            border-bottom: 3px solid var(--rog-red);
+            padding-bottom: 10px;
+            margin-bottom: 60px;
+            display: block;
+            width: fit-content;
+            margin-inline: auto;
+        }
+
+        .project-showcase {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        @media (min-width: 992px) {
+            .project-showcase {
+                grid-template-columns: 1fr 1.5fr;
+                align-items: start;
+            }
+        }
+
+        .project-media {
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            padding: 30px;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+        }
+
+        .app-screenshot {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border: 2px solid #333;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto 30px auto;
+            transition: var(--transition);
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+        }
+
+        .app-screenshot:hover {
+            transform: scale(1.05);
+            border-color: var(--rog-red);
+            box-shadow: 0 0 20px rgba(255, 0, 41, 0.5);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .tech-row {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .tech-icon-wide-wrapper {
+            background: white;
+            width: 250px;
+            height: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+            padding: 10px;
+        }
+
+        .tech-icon-wide-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .tech-row:hover .tech-icon-wide-wrapper {
+            border-color: var(--rog-red);
+            box-shadow: 0 0 15px rgba(255, 0, 41, 0.6);
+            transform: scale(1.05);
+        }
+
+        .tech-desc {
+            color: var(--text-main);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px var(--rog-red);
+            text-align: center;
+        }
+
+        .project-specs {
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            padding: 40px;
+            clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+        }
+
+        .specs-title {
+            font-size: 2rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .milestone-desc {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        strong {
+            color: var(--rog-red);
+        }
+
+        .specs-section {
+            margin-bottom: 30px;
+        }
+
+        .specs-section h3 {
+            text-transform: uppercase;
+            color: var(--rog-red);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .feature-list li {
+            color: var(--text-dim);
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .feature-list li::before {
+            content: '>';
+            color: var(--rog-red);
+            position: absolute;
+            left: -20px;
+        }
+
+        .back-btn-container {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .rog-btn {
+            background: var(--rog-red);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .rog-btn:hover {
+            background: white;
+            color: var(--rog-red);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div style="font-weight: 900; color: var(--rog-red);">KANG</div>
+        <ul class="nav-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">Main About</a></li>
+            <li><a href="index.html#qualities">Qualities</a></li>
+            <li><a href="index.html#academic">Education</a></li>
+            <li><a href="index.html#work">Projects</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1 class="page-title">Project Log: eNote App</h1>
+
+        <div class="project-showcase">
+            <div class="project-media">
+                <img src="picture/note_bsk.png" alt="eNote App Interface" class="app-screenshot">
+
+                <div class="tech-stack">
+                    <div class="tech-row">
+                        <div class="tech-icon-wide-wrapper">
+                            <img src="picture/android-studio-logo.png" alt="Android Studio">
+                        </div>
+                        <span class="tech-desc">Development Framework</span>
+                    </div>
+                    <div class="tech-row">
+                        <div class="tech-icon-wide-wrapper">
+                            <img src="picture/firebase-logo.png" alt="Firebase Database">
+                        </div>
+                        <span class="tech-desc">Backend & Database (HCI)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-specs">
+                <h2 class="specs-title">System Profile: eNote App</h2>
+                <p class="milestone-desc">
+                    This high-fidelity system was developed by a strategic <strong>team of 3 people</strong>. In this
+                    project, I served as the primary engineer for <strong>Firebase development and database
+                        construction</strong>, ensuring a seamless and secure data architecture.
+                </p>
+
+                <div class="specs-section">
+                    <h3>The Main Functions:</h3>
+                    <ul class="feature-list">
+                        <li><strong>Real-time PDF Vault:</strong> Built a <strong>real-time database</strong> allowing
+                            users to save PDF notes securely to our system.</li>
+                        <li><strong>Granular Privacy:</strong> Users have full control to toggle their notes between
+                            <strong>Private</strong> or <strong>Public</strong> status for sharing.</li>
+                        <li><strong>In-App PDF Editor:</strong> Developed the capability for users to <strong>edit their
+                                notes</strong> directly within the app using a tactical PDF styling interface.</li>
+                    </ul>
+                </div>
+
+                <div class="specs-section">
+                    <h3>The Security:</h3>
+                    <ul class="feature-list">
+                        <li><strong>Authenticated Entry:</strong> Access to the system is strictly limited to authorized
+                            accounts.</li>
+                        <li><strong>Secure Data Repository:</strong> Utilized the <strong>real-time database</strong> to
+                            store and protect user registration data within the Firebase environment.</li>
+                        <li><strong>Mandatory Verification:</strong> New users must complete a full verification
+                            sequence before account registration is finalized.</li>
+                        <li><strong>Unique Identifier Protocol:</strong> To prevent duplicate identities, each
+                            <strong>email and phone number</strong> is restricted to a single account only.</li>
+                        <li><strong>OTP Transmission:</strong> Integrated an <strong>OTP (One-Time Password)</strong>
+                            system that transmits security pins to users via SMS messages.</li>
+                    </ul>
+                </div>
+
+                <div class="specs-section">
+                    <h3>System Architecture Overview:</h3>
+                    <p class="card-text">By utilizing an MVC pattern, the eNote app ensures that the
+                        <strong>Java</strong> controllers and <strong>Firebase</strong> backend work in perfect
+                        synchronization, creating a robust and efficient user experience.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-btn-container">
+            <a href="index.html#work" class="rog-btn">Return to Main Terminal</a>
+        </div>
+    </main>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
